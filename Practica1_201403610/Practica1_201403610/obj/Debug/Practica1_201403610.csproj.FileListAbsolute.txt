@@ -1,1 +1,8 @@
 c:\users\lenovo\documents\visual studio 2013\Projects\Practica1_201403610\Practica1_201403610\bin\Debug\Practica1_201403610.exe.config
+c:\users\lenovo\documents\visual studio 2013\Projects\Practica1_201403610\Practica1_201403610\bin\Debug\Practica1_201403610.exe
+c:\users\lenovo\documents\visual studio 2013\Projects\Practica1_201403610\Practica1_201403610\bin\Debug\Practica1_201403610.pdb
+c:\users\lenovo\documents\visual studio 2013\Projects\Practica1_201403610\Practica1_201403610\obj\Debug\Practica1_201403610.csprojResolveAssemblyReference.cache
+c:\users\lenovo\documents\visual studio 2013\Projects\Practica1_201403610\Practica1_201403610\obj\Debug\Practica1_201403610.Properties.Resources.resources
+c:\users\lenovo\documents\visual studio 2013\Projects\Practica1_201403610\Practica1_201403610\obj\Debug\Practica1_201403610.csproj.GenerateResource.Cache
+c:\users\lenovo\documents\visual studio 2013\Projects\Practica1_201403610\Practica1_201403610\obj\Debug\Practica1_201403610.exe
+c:\users\lenovo\documents\visual studio 2013\Projects\Practica1_201403610\Practica1_201403610\obj\Debug\Practica1_201403610.pdb
