@@ -1,0 +1,76 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Practica1_201403610.Estructuras
+{
+    class NodoMatriz
+    {
+        private int dato, x, y;
+        private NodoMatriz izquierda, derecha, arriba, abajo;
+
+        public NodoMatriz(int dato, int x, int y)
+        {
+            this.dato = dato;
+            setPosition(x, y);
+            izquierda = null;
+            derecha = null;
+            arriba = null;
+            abajo = null;
+        }
+
+        public NodoMatriz(int dato, int x, int y, NodoMatriz izquierda, NodoMatriz derecha, NodoMatriz arriba, NodoMatriz abajo)
+        {
+            this.dato = dato;
+            setPosition(x, y);
+            this.izquierda = izquierda;
+            this.derecha = derecha;
+            this.arriba = arriba;
+            this.abajo = abajo;
+        }
+
+        public void setPosition(int x, int y)
+        {
+            this.x = x;
+            this.y = y;
+        }
+
+        public int[] getPosition()
+        {
+            int[] arr = {x, y};
+            return arr;
+        }
+
+        public int Dato
+        {
+            get { return dato; }
+            set { dato = value; }
+        }
+
+        internal NodoMatriz Izquierda
+        {
+            get { return izquierda; }
+            set { izquierda = value; }
+        }
+
+        internal NodoMatriz Derecha
+        {
+            get { return derecha; }
+            set { derecha = value; }
+        }
+
+        internal NodoMatriz Arriba
+        {
+            get { return arriba; }
+            set { arriba = value; }
+        }
+
+        internal NodoMatriz Abajo
+        {
+            get { return abajo; }
+            set { abajo = value; }
+        }
+    }
+}
