@@ -36,5 +36,10 @@ namespace Practica1_201403610.Estructuras
         {
             return tamano;
         }
+
+        public bool isEmpty()
+        {
+            return (tamano == 0);
+        }
     }
 }

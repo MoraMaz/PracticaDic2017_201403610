@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Datos\Usuario.cs" />
     <Compile Include="Estructuras\Circular.cs" />
     <Compile Include="Estructuras\Cola.cs" />
     <Compile Include="Estructuras\Matriz.cs" />

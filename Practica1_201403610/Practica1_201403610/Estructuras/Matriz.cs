@@ -53,7 +53,7 @@ namespace Practica1_201403610.Estructuras
         {
             int i;
             NodoMatriz anterior, actual, aux1, aux2;
-            j = filas - 1;
+            i = filas - 1;
             crearFila(inicio, 0);
             anterior = null;
             actual = inicio;
@@ -102,7 +102,7 @@ namespace Practica1_201403610.Estructuras
             actual.Izquierda = anterior;
         }
 
-        private NodoMatriz get(int fila, int columna)
+        public NodoMatriz get(int fila, int columna)
         {
             int i, j;
             NodoMatriz buscado = inicio;
@@ -129,5 +129,10 @@ namespace Practica1_201403610.Estructuras
                 seteado.Dato = dato;
         }
 
+        public int[] Size()
+        {
+            int[] arr = { filas, columnas };
+            return arr;
+        }
     }
 }
