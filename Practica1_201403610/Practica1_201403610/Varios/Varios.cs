@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Practica1_201403610.Datos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,11 @@ namespace Practica1_201403610.Varios
             nueva.Replace("\r", "");
             nueva.Replace("\f", "");
             return nueva;
+        }
+
+        public void cargarArchivo(string path, Usuario actual)
+        {
+            //esto falta alv
         }
     }
 }

@@ -6,3 +6,5 @@ c:\users\lenovo\documents\visual studio 2013\Projects\Practica1_201403610\Practi
 c:\users\lenovo\documents\visual studio 2013\Projects\Practica1_201403610\Practica1_201403610\obj\Debug\Practica1_201403610.csproj.GenerateResource.Cache
 c:\users\lenovo\documents\visual studio 2013\Projects\Practica1_201403610\Practica1_201403610\obj\Debug\Practica1_201403610.exe
 c:\users\lenovo\documents\visual studio 2013\Projects\Practica1_201403610\Practica1_201403610\obj\Debug\Practica1_201403610.pdb
+C:\Users\Lenovo\documents\visual studio 2013\Projects\Practica1_201403610\Practica1_201403610\obj\Debug\Practica1_201403610.Interfaz.Login.resources
+C:\Users\Lenovo\documents\visual studio 2013\Projects\Practica1_201403610\Practica1_201403610\obj\Debug\Practica1_201403610.Interfaz.Panel.resources

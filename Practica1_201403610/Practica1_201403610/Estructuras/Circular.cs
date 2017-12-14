@@ -21,12 +21,12 @@ namespace Practica1_201403610.Estructuras
             tamano = 0;
         }
 
-        public void Agregar(Usuario dato)
+        public bool Agregar(Usuario dato)
         {
             if (isEmpty())
                 inicio = new NodoCircular<Usuario>(dato);
-            if (Existe(dato.Nombre))
-                return;
+            else if (Existe(dato.Nombre))
+                return false;
             else
             {
                 NodoCircular<Usuario> nuevo = new NodoCircular<Usuario>(dato, inicio.Anterior, inicio);
@@ -34,6 +34,7 @@ namespace Practica1_201403610.Estructuras
                 inicio.Anterior = nuevo;
             }
             tamano++;
+            return true;
         }
 
         public bool Existe(string nombre)
@@ -60,10 +61,10 @@ namespace Practica1_201403610.Estructuras
             return null;
         }
 
-        public void Eliminar(string nombre, string contrasena)
+        public bool Eliminar(string nombre, string contrasena)
         {
             if (isEmpty())
-                return;
+                return false;
             NodoCircular<Usuario> auxiliar = Obtener(nombre, contrasena);
             if (auxiliar != null)
             {
@@ -71,11 +72,15 @@ namespace Practica1_201403610.Estructuras
                     inicio = null;
                 else
                 {
+                    if (auxiliar == inicio)
+                        inicio = inicio.Siguiente;
                     auxiliar.Anterior.Siguiente = auxiliar.Siguiente;
                     auxiliar.Siguiente.Anterior = auxiliar.Anterior;
                 }
                 tamano--;
+                return true;
             }
+            return false;
         }
 
         public void Graficar()

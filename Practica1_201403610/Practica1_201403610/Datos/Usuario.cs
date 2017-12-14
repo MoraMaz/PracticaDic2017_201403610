@@ -27,9 +27,15 @@ namespace Practica1_201403610.Datos
             if (cola.isEmpty() && pila.isEmpty())
                 MessageBox.Show("Pila y Cola vacía.");
             else if (cola.isEmpty())
+            {
                 MessageBox.Show("Cola vacía.");
+                pila.Pop();
+            }
             else if (pila.isEmpty())
+            {
                 MessageBox.Show("Pila vacía.");
+                cola.Dequeue();
+            }
             else
             {
                 Matriz m1 = cola.Dequeue().Dato;

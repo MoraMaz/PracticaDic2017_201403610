@@ -60,7 +60,10 @@ namespace Practica1_201403610.Estructuras
         public void Graficar()
         {
             if (isEmpty())
+            {
+                MessageBox.Show("Cola vacía.");
                 return;
+            }
             string grafo = "digraph Cola {\n\trandir = LR;\n\tlabel = \"Cola\";\n\tnode [shape = box];\n\t";
             NodoCola<Matriz> auxiliar = inicio;
             int i = 0;

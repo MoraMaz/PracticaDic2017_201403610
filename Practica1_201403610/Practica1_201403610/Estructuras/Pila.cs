@@ -53,7 +53,10 @@ namespace Practica1_201403610.Estructuras
         public void Graficar()
         {
             if (isEmpty())
+            {
+                MessageBox.Show("Pila vacía.");
                 return;
+            }
             string grafo = "digraph Pila {\n\trandir = UD;\n\tlabel = \"Pila\";\n\tnode [shape = box];\n\t";
             NodoPila<Matriz> auxiliar = top;
             int i = 0;

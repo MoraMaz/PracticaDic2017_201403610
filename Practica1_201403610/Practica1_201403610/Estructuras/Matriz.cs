@@ -22,8 +22,10 @@ namespace Practica1_201403610.Estructuras
 
         private void generarMatriz()
         {
+            if (filas == 0 || columnas == 0)
+                return;
             int indice;
-            NodoMatriz anterior, actual, aux1, aux2;
+            NodoMatriz anterior, actual, enlace_arriba, enlace_abajo;
             crearFila(inicio, 0);
             anterior = null;
             actual = inicio;
@@ -38,16 +40,16 @@ namespace Practica1_201403610.Estructuras
             anterior = inicio;
             for (actual = inicio.Abajo; actual != null; actual = actual.Abajo)
             {
-                aux1 = anterior;
-                aux2 = actual;
+                enlace_arriba = anterior;
+                enlace_abajo = actual;
                 for (indice = 0; indice < columnas - 1; indice++)
                 {
-                    aux1 = aux1.Derecha;
-                    aux2 = aux2.Derecha;
-                    if (aux1 != null && aux2 != null)
+                    enlace_arriba = enlace_arriba.Derecha;
+                    enlace_abajo = enlace_abajo.Derecha;
+                    if (enlace_arriba != null && enlace_abajo != null)
                     {
-                        aux1.Abajo = aux2;
-                        aux2.Arriba = aux1;
+                        enlace_arriba.Abajo = enlace_abajo;
+                        enlace_abajo.Arriba = enlace_arriba;
                     }
 
                 }
