@@ -1,41 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Practica1_201403610.Estructuras
-{    
-    /* RECORDATORIO DE LA MATRIZ
-     * Crear una matriz "a" de 2 filas por 3 columnas:
-     * Estructuras.Matriz a = new Estructuras.Matriz(2, 3);
-     * 
-     * * El método constructor de la matriz recibe dos enteros: 
-     *   cantidad de filas y cantidad de columnas, en ese orden.
-     *      NOTA:
-     *          cantidad de filas = tamaño en y
-     *          cantidad de columnas = tamaño en x *
-     * 
-     * - Posiciones disponibles para el caso de esta matriz:
-     * - (0,0) (0,1) (0,2) (1,0) (1,1) (1,2)
-     * 
-     * Insertar los números del 0 al 2 en la primera fila (fila 0):
-     * a.set(0, 0, 0);
-     * a.set(1, 0, 1);
-     * a.set(2, 0, 2);
-     * 
-     * Insertar los números del 3 al 5 en la segunda fila (fila 1):
-     * a.set(3, 1, 0);
-     * a.set(4, 1, 1);
-     * a.set(5, 1, 2);
-     * 
-     * * El método set de la matriz recibe tres enteros: dato, 
-     *   fila y columna, en ese orden.
-     *      NOTA: 
-     *          fila = posición en y
-     *          columna = posicion en x *
-     */
-
+{
     class Matriz
     {
         private NodoMatriz inicio;
@@ -51,28 +22,25 @@ namespace Practica1_201403610.Estructuras
 
         private void generarMatriz()
         {
-            int i;
+            int indice;
             NodoMatriz anterior, actual, aux1, aux2;
-            i = filas - 1;
             crearFila(inicio, 0);
             anterior = null;
             actual = inicio;
-            while (i > 0)
+            for (indice = filas - 1; indice > 0; indice--)
             {
                 actual.Abajo = new NodoMatriz(0, actual.getPosition()[0], actual.getPosition()[1] + 1);
                 anterior = actual;
                 actual = actual.Abajo;
                 actual.Arriba = anterior;
                 crearFila(actual, actual.getPosition()[1]);
-                i--;
             }
             anterior = inicio;
-            actual = inicio.Abajo;
-            while (actual != null)
+            for (actual = inicio.Abajo; actual != null; actual = actual.Abajo)
             {
                 aux1 = anterior;
                 aux2 = actual;
-                for (i = 0; i < columnas - 1; i++)
+                for (indice = 0; indice < columnas - 1; indice++)
                 {
                     aux1 = aux1.Derecha;
                     aux2 = aux2.Derecha;
@@ -84,17 +52,16 @@ namespace Practica1_201403610.Estructuras
 
                 }
                 anterior = actual;
-                actual = actual.Abajo;
             }
         }
 
         private void crearFila(NodoMatriz actual, int fila)
         {
-            int i;
+            int indice;
             NodoMatriz anterior = null;
-            for (i = 0; i < columnas - 1; i++)
+            for (indice = 0; indice < columnas - 1; indice++)
             {
-                actual.Derecha = new NodoMatriz(0, i + 1, fila);
+                actual.Derecha = new NodoMatriz(0, indice + 1, fila);
                 anterior = actual;
                 actual = actual.Derecha;
                 actual.Izquierda = anterior;
@@ -104,14 +71,16 @@ namespace Practica1_201403610.Estructuras
 
         public NodoMatriz get(int fila, int columna)
         {
-            int i, j;
+            if (columna >= this.columnas || fila >= this.filas)
+                return null;
+            int indice_columna, indice_fila;
             NodoMatriz buscado = inicio;
-            for (i = 0; i < this.columnas; i++)
+            for (indice_columna = 0; indice_columna < this.columnas; indice_columna++)
             {
-                if (columna == i)
-                    for (j = 0; j < this.filas; j++)
+                if (columna == indice_columna)
+                    for (indice_fila = 0; indice_fila < this.filas; indice_fila++)
                     {
-                        if (fila == j)
+                        if (fila == indice_fila)
                             return buscado;
                         buscado = buscado.Abajo;
                     }
@@ -122,17 +91,99 @@ namespace Practica1_201403610.Estructuras
 
         public void set(int dato, int fila, int columna)
         {
-            if (columna >= this.columnas || fila >= this.filas)
-                return;
-            NodoMatriz seteado = get(fila, columna);
-            if (seteado != null)
-                seteado.Dato = dato;
+            NodoMatriz a_setear = get(fila, columna);
+            if (a_setear != null)
+                a_setear.Dato = dato;
+        }
+
+        public int getValor()
+        {
+            int suma = 0;
+            NodoMatriz auxiliar, actual;
+            auxiliar = inicio;
+            actual = inicio;
+            for (int i = 0; i < columnas; i++)
+            {
+                for (int j = 0; j < filas; j++)
+                {
+                    if (filas - 1 == j)
+                        auxiliar = auxiliar.Derecha;
+                    suma += actual.Dato;
+                    actual = actual.Abajo;
+                }
+                actual = auxiliar;
+            }
+            return suma;
         }
 
         public int[] Size()
         {
-            int[] arr = { filas, columnas };
-            return arr;
+            int[] tamano = { filas, columnas };
+            return tamano;
+        }
+
+        public void Graficar()
+        {
+            if (!(filas > 0 && columnas > 0))
+                return;
+            string grafo = "digraph Matriz {\n\tlabel = \"Matriz\";\n\tnode [shape = box];\n\t";
+            NodoMatriz auxiliar, actual;
+            auxiliar = inicio;
+            actual = inicio;
+            for (int i = 0; i < columnas; i++)
+            {
+                for (int j = 0; j < filas; j++)
+                {
+                    if (j == 0)
+                        grafo += "\t\t{\n\t\t\trank = min;\n";
+                    else if (j == filas - 1)
+                    {
+                        grafo += "\t\t{\n\t\t\trank = max;\n";
+                        auxiliar = auxiliar.Derecha;
+                    }
+                    else
+                        grafo += "\t\t{\n\t\t\trank = same;\n";
+                    grafo += "\t\t\tN" + actual.getPosition()[0] + actual.getPosition()[1] + " [label = \"" + actual.Dato + "\"];\n";
+                    if (actual.Derecha != null)
+                        grafo += "\t\t\tN" + actual.getPosition()[0] + actual.getPosition()[1] + " -> N" + actual.Derecha.getPosition()[0] + actual.Derecha.getPosition()[1] + "[rankdir=LR];\n";
+                    if (actual.Izquierda != null)
+                        grafo += "\t\t\tN" + actual.getPosition()[0] + actual.getPosition()[1] + " -> N" + actual.Izquierda.getPosition()[0] + actual.Izquierda.getPosition()[1] + ";\n";
+                    grafo += "\t\t}\n";
+                    
+                    if (actual.Arriba != null)
+                        grafo += "\tN" + actual.getPosition()[0] + actual.getPosition()[1] + " -> N" + actual.Arriba.getPosition()[0] + actual.Arriba.getPosition()[1] + ";\n";
+                    if (actual.Abajo != null)
+                        grafo += "\tN" + actual.getPosition()[0] + actual.getPosition()[1] + " -> N" + actual.Abajo.getPosition()[0] + actual.Abajo.getPosition()[1] + "[rankdir=UD];\n";
+                    actual = actual.Abajo;
+                }
+                actual = auxiliar;
+            }
+            grafo += "\n}";
+            string pathDot = @"C:\Salidas";
+            string pathPng;
+            if (!Directory.Exists(pathDot))
+                Directory.CreateDirectory(pathDot);
+            pathDot = Path.Combine(pathDot, "m.dot");
+            pathPng = pathDot.Replace(".dot", ".png");
+            StreamWriter fichero = new StreamWriter(pathDot, false);
+            fichero.WriteLine(grafo);
+            fichero.Close();
+            System.Diagnostics.ProcessStartInfo startProceso = new System.Diagnostics.ProcessStartInfo("cmd", "/cdot " + pathDot + " -Tpng -o " + pathPng);
+            startProceso.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+            startProceso.RedirectStandardOutput = true;
+            startProceso.UseShellExecute = false;
+            startProceso.CreateNoWindow = false;
+            System.Diagnostics.Process proceso = new System.Diagnostics.Process();
+            proceso.StartInfo = startProceso;
+            proceso.Start();
+            startProceso = new System.Diagnostics.ProcessStartInfo("cmd", "/c " + pathPng);
+            startProceso.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+            startProceso.RedirectStandardOutput = true;
+            startProceso.UseShellExecute = false;
+            startProceso.CreateNoWindow = false;
+            proceso = new System.Diagnostics.Process();
+            proceso.StartInfo = startProceso;
+            proceso.Start();
         }
     }
 }

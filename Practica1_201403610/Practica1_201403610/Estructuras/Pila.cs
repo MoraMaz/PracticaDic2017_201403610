@@ -1,49 +1,96 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Practica1_201403610.Estructuras
 {
-    class Pila<T>
+    class Pila
     {
-        private NodoPila<T> top;
+        private NodoPila<Matriz> top;
+        private Varios.Varios varios;
         private int tamano;
 
         public Pila()
         {
+            varios = new Varios.Varios();
             top = null;
             tamano = 0;
         }
 
-        public void Push(T dato)
+        public void Push(Matriz dato)
         {
-            if (top == null)
-                top = new NodoPila<T>(dato);
+            if (isEmpty())
+                top = new NodoPila<Matriz>(dato);
             else
-                top = new NodoPila<T>(dato, top);
+                top = new NodoPila<Matriz>(dato, top);
             tamano++;
         }
 
-        public NodoPila<T> Pop()
+        public NodoPila<Matriz> Pop()
         {
-            if (tamano == 0)
+            if (isEmpty())
+            {
+                MessageBox.Show("Pila vacía.");
                 return null;
-            NodoPila<T> cabeza = top;
+            }
+            NodoPila<Matriz> cabeza = top;
             top = top.Abajo;
             tamano--;
             return cabeza;
         }
 
-        public NodoPila<T> Peek()
+        public void Peek()
         {
-            return top;
+            if (!isEmpty())
+                top.Dato.Graficar();
+            MessageBox.Show("Pila vacía.");
         }
 
-        public int Size()
+        public void Graficar()
         {
-            return tamano;
+            if (isEmpty())
+                return;
+            string grafo = "digraph Pila {\n\trandir = UD;\n\tlabel = \"Pila\";\n\tnode [shape = box];\n\t";
+            NodoPila<Matriz> auxiliar = top;
+            int i = 0;
+            while(auxiliar != null)
+            {
+                grafo += "N" + i + " [label = \"" + auxiliar.Dato.getValor() +"\" ];\n\t";
+                if (auxiliar.Abajo != null)
+                    grafo += "N" + i + " -> N" + (i+1) + " [label = \"Abajo\"];\n\t";
+                i++;
+                auxiliar = auxiliar.Abajo;
+            }
+            grafo += "\n}";
+            string pathDot = @"C:\Salidas";
+            string pathPng;
+            if (!Directory.Exists(pathDot))
+                Directory.CreateDirectory(pathDot);
+            pathDot = Path.Combine(pathDot, "p.dot");
+            pathPng = pathDot.Replace(".dot", ".png");
+            StreamWriter fichero = new StreamWriter(pathDot, false);
+            fichero.WriteLine(grafo);
+            fichero.Close();
+            System.Diagnostics.ProcessStartInfo startProceso = new System.Diagnostics.ProcessStartInfo("cmd", "/cdot " + pathDot + " -Tpng -o " + pathPng);
+            startProceso.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+            startProceso.RedirectStandardOutput = true;
+            startProceso.UseShellExecute = false;
+            startProceso.CreateNoWindow = false;
+            System.Diagnostics.Process proceso = new System.Diagnostics.Process();
+            proceso.StartInfo = startProceso;
+            proceso.Start();
+            startProceso = new System.Diagnostics.ProcessStartInfo("cmd", "/c " + pathPng);
+            startProceso.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+            startProceso.RedirectStandardOutput = true;
+            startProceso.UseShellExecute = false;
+            startProceso.CreateNoWindow = false;
+            proceso = new System.Diagnostics.Process();
+            proceso.StartInfo = startProceso;
+            proceso.Start();
         }
 
         public bool isEmpty()

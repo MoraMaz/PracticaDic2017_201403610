@@ -23,7 +23,7 @@ namespace Practica1_201403610.Estructuras
             set { dato = value; }
         }
 
-        internal NodoCola<T> Siguiente
+        public NodoCola<T> Siguiente
         {
             get { return siguiente; }
             set { siguiente = value; }

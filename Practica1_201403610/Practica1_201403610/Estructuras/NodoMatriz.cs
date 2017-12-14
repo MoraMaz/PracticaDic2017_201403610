@@ -31,7 +31,7 @@ namespace Practica1_201403610.Estructuras
             this.abajo = abajo;
         }
 
-        public void setPosition(int x, int y)
+        private void setPosition(int x, int y)
         {
             this.x = x;
             this.y = y;
@@ -39,8 +39,8 @@ namespace Practica1_201403610.Estructuras
 
         public int[] getPosition()
         {
-            int[] arr = {x, y};
-            return arr;
+            int[] posicion = {x, y};
+            return posicion;
         }
 
         public int Dato

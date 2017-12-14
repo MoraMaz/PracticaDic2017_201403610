@@ -23,7 +23,7 @@ namespace Practica1_201403610.Estructuras
             this.abajo = abajo;
         }
 
-        internal NodoPila<T> Abajo
+        public NodoPila<T> Abajo
         {
             get { return abajo; }
             set { abajo = value; }
