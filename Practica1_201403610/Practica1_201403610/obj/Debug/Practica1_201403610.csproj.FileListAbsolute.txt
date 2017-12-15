@@ -8,3 +8,5 @@ c:\users\lenovo\documents\visual studio 2013\Projects\Practica1_201403610\Practi
 c:\users\lenovo\documents\visual studio 2013\Projects\Practica1_201403610\Practica1_201403610\obj\Debug\Practica1_201403610.pdb
 C:\Users\Lenovo\documents\visual studio 2013\Projects\Practica1_201403610\Practica1_201403610\obj\Debug\Practica1_201403610.Interfaz.Login.resources
 C:\Users\Lenovo\documents\visual studio 2013\Projects\Practica1_201403610\Practica1_201403610\obj\Debug\Practica1_201403610.Interfaz.Panel.resources
+C:\Users\Lenovo\Documents\Visual Studio 2013\Projects\Practica1_201403610\Practica1_201403610\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Lenovo\Documents\Visual Studio 2013\Projects\Practica1_201403610\Practica1_201403610\bin\Debug\Newtonsoft.Json.xml

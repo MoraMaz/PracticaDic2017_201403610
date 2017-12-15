@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 using System.Windows.Forms;
 
 namespace Practica1_201403610.Estructuras
@@ -46,7 +41,10 @@ namespace Practica1_201403610.Estructuras
         public void Peek()
         {
             if (!isEmpty())
+            {
                 top.Dato.Graficar();
+                return;
+            }
             MessageBox.Show("Pila vacía.");
         }
 

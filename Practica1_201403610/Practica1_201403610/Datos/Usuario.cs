@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Practica1_201403610.Estructuras;
+﻿using Practica1_201403610.Estructuras;
 using System.Windows.Forms;
 
 namespace Practica1_201403610.Datos
@@ -47,12 +42,12 @@ namespace Practica1_201403610.Datos
                     re.Graficar();
                     MessageBox.Show("Multiplicación AxB realizada.");
                 }
-                //else if (m2.Size()[1] == m1.Size()[0])
-                //{
-                //    re = multiplicar(m2, m1);
-                //    re.Graficar();
-                //    MessageBox.Show("Multiplicación de BxA realizada.");
-                //}
+                else if (m2.Size()[1] == m1.Size()[0])
+                {
+                    re = multiplicar(m2, m1);
+                    re.Graficar();
+                    MessageBox.Show("Multiplicación de BxA realizada.");
+                }
                 else
                     MessageBox.Show("No se puede realizar la multiplicación.");
             }

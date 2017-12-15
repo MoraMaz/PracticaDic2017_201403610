@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Practica1_201403610.Datos;
+﻿using Practica1_201403610.Datos;
 using System.IO;
 
 namespace Practica1_201403610.Estructuras
@@ -39,6 +34,8 @@ namespace Practica1_201403610.Estructuras
 
         public bool Existe(string nombre)
         {
+            if (isEmpty())
+                return false;
             NodoCircular<Usuario> auxiliar = inicio;
             do
             {
@@ -51,6 +48,8 @@ namespace Practica1_201403610.Estructuras
 
         public NodoCircular<Usuario> Obtener(string nombre, string contrasena)
         {
+            if (isEmpty())
+                return null;
             NodoCircular<Usuario> auxiliar = inicio;
             do
             {
